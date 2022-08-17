@@ -107,14 +107,14 @@
             Console.WriteLine("End of Queue");
         }
 
-        // This operation prints the queue in priority order using quick sort.
-        // The runtime of this method is O(nlogn) with a worst case of O(n^2)
+        // This operation prints the queue in priority order using merge sort.
+        // The runtime of this method is O(nlogn)
         public void printQueueInPriority()
         {
             item[] items = new item[Count];
             pQueue.CopyTo(items, 0);
 
-            quickSort(items, 0, items.Length - 1);
+            MergeSort(items, 0, items.Length - 1);
 
             Console.WriteLine("In this queue, the smallest value is the highest priority. \nI.E. 1 is of higher priority than 5, with 5 being the default priority value.\nQueue in Priority Order:");
             foreach (item item in items)
@@ -124,67 +124,91 @@
             Console.WriteLine("End of Queue");
         }
 
-        // C# Quick Sort Code from Geeks for Geeks altered for item implementation
-        // A utility function to swap two elements
-        static void swap(item[] arr, int i, int j)
+        // C# Merge Sort from Geeks for Geeks altered for item implementation
+
+        // Merges two subarrays of []arr.
+        // First subarray is arr[l..m]
+        // Second subarray is arr[m+1..r]
+        void merge(item[] arr, int l, int m, int r)
         {
-            item temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
+            // Find sizes of two
+            // subarrays to be merged
+            int n1 = m - l + 1;
+            int n2 = r - m;
 
-        /* This function takes last element as pivot, places
-             the pivot element at its correct position in sorted
-             array, and places all smaller (smaller than pivot)
-             to left of pivot and all greater elements to right
-             of pivot */
-        static int partition(item[] arr, int low, int high)
-        {
+            // Create temp arrays
+            item[] L = new item[n1];
+            item[] R = new item[n2];
+            int i, j;
 
-            // pivot
-            int pivot = arr[high].priority;
+            // Copy data to temp arrays
+            for (i = 0; i < n1; ++i)
+                L[i] = arr[l + i];
+            for (j = 0; j < n2; ++j)
+                R[j] = arr[m + 1 + j];
 
-            // Index of smaller element and
-            // indicates the right position
-            // of pivot found so far
-            int i = (low - 1);
+            // Merge the temp arrays
 
-            for (int j = low; j <= high - 1; j++)
+            // Initial indexes of first
+            // and second subarrays
+            i = 0;
+            j = 0;
+
+            // Initial index of merged
+            // subarray array
+            int k = l;
+            while (i < n1 && j < n2)
             {
-
-                // If current element is smaller 
-                // than the pivot
-                if (arr[j].priority < pivot)
+                if (L[i].priority <= R[j].priority)
                 {
-
-                    // Increment index of 
-                    // smaller element
+                    arr[k] = L[i];
                     i++;
-                    swap(arr, i, j);
                 }
+                else
+                {
+                    arr[k] = R[j];
+                    j++;
+                }
+                k++;
             }
-            swap(arr, i + 1, high);
-            return (i + 1);
+
+            // Copy remaining elements
+            // of L[] if any
+            while (i < n1)
+            {
+                arr[k] = L[i];
+                i++;
+                k++;
+            }
+
+            // Copy remaining elements
+            // of R[] if any
+            while (j < n2)
+            {
+                arr[k] = R[j];
+                j++;
+                k++;
+            }
         }
 
-        /* The main function that implements QuickSort
-                    arr[] --> Array to be sorted,
-                    low --> Starting index,
-                    high --> Ending index
-           */
-        static void quickSort(item[] arr, int low, int high)
+        // Main function that
+        // sorts arr[l..r] using
+        // merge()
+        void MergeSort(item[] arr, int l, int r)
         {
-            if (low < high)
+            if (l < r)
             {
+                // Find the middle
+                // point
+                int m = l + (r - l) / 2;
 
-                // pi is partitioning index, arr[p]
-                // is now at right place 
-                int pi = partition(arr, low, high);
+                // Sort first and
+                // second halves
+                MergeSort(arr, l, m);
+                MergeSort(arr, m + 1, r);
 
-                // Separately sort elements before
-                // partition and after partition
-                quickSort(arr, low, pi - 1);
-                quickSort(arr, pi + 1, high);
+                // Merge the sorted halves
+                merge(arr, l, m, r);
             }
         }
     }
