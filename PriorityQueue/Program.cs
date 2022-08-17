@@ -1,55 +1,5 @@
 ﻿namespace PriorityQueue
 {
-    public class Program
-    {
-        public static void Main()
-        {
-            PQ<string> pq = new PQ<string>();
-            Console.WriteLine($"Is the queue empty? {pq.isEmpty()}");
-
-            Console.WriteLine("Add item to the queue: rand_item with default priority");
-            pq.enqueue("rand_item");
-
-            Console.WriteLine("Add item to the queue: third with priority of 3");
-            pq.enqueue("third", 3);
-
-            Console.WriteLine("Add item to the queue: second with priority of 2");
-            pq.enqueue("second", 2);
-
-            Console.WriteLine("Add item to the queue: first with priority of 2");
-            pq.enqueue("first", 1);
-
-            Console.WriteLine("Add item to the queue: fourth with priority of 4");
-            pq.enqueue("fourth", 4);
-
-            Console.WriteLine("Add item to the queue: rand_item with default priority");
-            pq.enqueue("rand_item");
-
-            Console.WriteLine("Add item to the queue: low_priority with priority of 6");
-            pq.enqueue("low_priority", 6);
-
-            Console.WriteLine("Add item to the queue: rand_item with default priority");
-            pq.enqueue("rand_item");
-
-            Console.WriteLine($"Is the queue empty? {pq.isEmpty()}");
-            Console.WriteLine();
-            pq.printQueue();
-            Console.WriteLine();
-            Console.WriteLine($"First item in the queue: {pq.peekFront()}");
-            Console.WriteLine($"Highest priority item in the queue: {pq.peek()}");
-            Console.WriteLine($"Last item in the queue: {pq.peekRear()}");
-            Console.WriteLine();
-
-            Console.WriteLine($"Deque and remove highest priority item from queue. {pq.dequeue()} was removed.");
-            Console.WriteLine();
-            pq.printQueue();
-            Console.WriteLine();
-            pq.printQueueInPriority();
-            Console.WriteLine();
-            pq.printQueue();
-        }
-    }
-
     // A generic implementation of a priority queue with T being the type of data entered in the Queue
     public class PQ<T>
     {
@@ -236,6 +186,56 @@
                 quickSort(arr, low, pi - 1);
                 quickSort(arr, pi + 1, high);
             }
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            PQ<string> pq = new PQ<string>();
+            Console.WriteLine($"Is the queue empty? {pq.isEmpty()}");
+
+            Console.WriteLine("Add item to the queue: rand_item with default priority");
+            pq.enqueue("rand_item");
+
+            Console.WriteLine("Add item to the queue: third with priority of 3");
+            pq.enqueue("third", 3);
+
+            Console.WriteLine("Add item to the queue: second with priority of 2");
+            pq.enqueue("second", 2);
+
+            Console.WriteLine("Add item to the queue: first with priority of 2");
+            pq.enqueue("first", 1);
+
+            Console.WriteLine("Add item to the queue: fourth with priority of 4");
+            pq.enqueue("fourth", 4);
+
+            Console.WriteLine("Add item to the queue: rand_item with default priority");
+            pq.enqueue("rand_item");
+
+            Console.WriteLine("Add item to the queue: low_priority with priority of 6");
+            pq.enqueue("low_priority", 6);
+
+            Console.WriteLine("Add item to the queue: rand_item with default priority");
+            pq.enqueue("rand_item");
+
+            Console.WriteLine($"Is the queue empty? {pq.isEmpty()}");
+            Console.WriteLine();
+            pq.printQueue();
+            Console.WriteLine();
+            Console.WriteLine($"First item in the queue: {pq.peekFront()}");
+            Console.WriteLine($"Highest priority item in the queue: {pq.peek()}");
+            Console.WriteLine($"Last item in the queue: {pq.peekRear()}");
+            Console.WriteLine();
+
+            Console.WriteLine($"Deque and remove highest priority item from queue. {pq.dequeue()} was removed.");
+            Console.WriteLine();
+            pq.printQueue();
+            Console.WriteLine();
+            pq.printQueueInPriority();
+            Console.WriteLine();
+            pq.printQueue();
         }
     }
 }
