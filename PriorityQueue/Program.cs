@@ -157,8 +157,8 @@
             Console.WriteLine("End of Queue");
         }
 
-        // This operation prints the queue in priority order.
-        // The runtime of this method is O(nlogn)
+        // This operation prints the queue in priority order using quick sort.
+        // The runtime of this method is O(nlogn) with a worst case of O(n^2)
         public void printQueueInPriority()
         {
             item[] items = new item[Count];
