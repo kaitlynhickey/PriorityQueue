@@ -72,28 +72,26 @@
         // Returns the number of items in the queue
         // The runtime of this call is O(1)
         private int Count { get; set; }
-
-        // Returns the index of the highest priority item in the queue, whether that be the first item in the queue (default) or an item entered into the queue with a higher priority
-        // The runtime of this call is O(n)
-        private int priorityItem
-        {
-            get 
-            {
-                int minIndex = 0;
-
-                for (int i = 1; i < pQueue.Count; i++)
-                {
-                    if (pQueue[i].priority < pQueue[minIndex].priority)
-                    {
-                        minIndex = i;
-                    }
-                }
-                return minIndex;
-            }
-        }
+        
 
         public PQ()
         {
+        }
+
+        // Returns the index of the highest priority item in the queue, whether that be the first item in the queue (default) or an item entered into the queue with a higher priority
+        // The runtime of this call is O(n)
+        private int priorityItem()
+        {
+            int minIndex = 0;
+
+            for (int i = 1; i < pQueue.Count; i++)
+            {
+                if (pQueue[i].priority < pQueue[minIndex].priority)
+                {
+                    minIndex = i;
+                }
+            }
+            return minIndex;
         }
 
         // This function is used to insert new data into the queue.
@@ -110,7 +108,7 @@
         // The runtime of this method is O(n)
         public T dequeue()
         {
-            int pIndex = priorityItem;
+            int pIndex = priorityItem();
             item priority = pQueue[pIndex];
 
             pQueue.RemoveAt(pIndex);
@@ -123,7 +121,7 @@
         // The runtime of this method is O(n)
         public T peek()
         {
-            return pQueue[priorityItem].data;
+            return pQueue[priorityItem()].data;
         }
 
         // This operation returns the element at the front end without removing it.
