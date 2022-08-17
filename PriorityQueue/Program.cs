@@ -129,7 +129,7 @@
         // Merges two subarrays of []arr.
         // First subarray is arr[l..m]
         // Second subarray is arr[m+1..r]
-        void merge(item[] arr, int l, int m, int r)
+        private void merge(item[] arr, int l, int m, int r)
         {
             // Find sizes of two
             // subarrays to be merged
@@ -194,7 +194,7 @@
         // Main function that
         // sorts arr[l..r] using
         // merge()
-        void MergeSort(item[] arr, int l, int r)
+        private void MergeSort(item[] arr, int l, int r)
         {
             if (l < r)
             {
