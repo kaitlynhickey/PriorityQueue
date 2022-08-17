@@ -5,14 +5,43 @@
         public static void Main()
         {
             PQ<string> pq = new PQ<string>();
+            Console.WriteLine($"Is the queue empty? {pq.isEmpty()}");
+
+            Console.WriteLine("Add item to the queue: rand_item with default priority");
             pq.enqueue("rand_item");
+
+            Console.WriteLine("Add item to the queue: third with priority of 3");
             pq.enqueue("third", 3);
+
+            Console.WriteLine("Add item to the queue: second with priority of 2");
             pq.enqueue("second", 2);
+
+            Console.WriteLine("Add item to the queue: first with priority of 2");
             pq.enqueue("first", 1);
+
+            Console.WriteLine("Add item to the queue: fourth with priority of 4");
             pq.enqueue("fourth", 4);
+
+            Console.WriteLine("Add item to the queue: rand_item with default priority");
             pq.enqueue("rand_item");
+
+            Console.WriteLine("Add item to the queue: low_priority with priority of 6");
             pq.enqueue("low_priority", 6);
+
+            Console.WriteLine("Add item to the queue: rand_item with default priority");
             pq.enqueue("rand_item");
+
+            Console.WriteLine($"Is the queue empty? {pq.isEmpty()}");
+            Console.WriteLine();
+            pq.printQueue();
+            Console.WriteLine();
+            Console.WriteLine($"First item in the queue: {pq.peekFront()}");
+            Console.WriteLine($"Highest priority item in the queue: {pq.peek()}");
+            Console.WriteLine($"Last item in the queue: {pq.peekRear()}");
+            Console.WriteLine();
+
+            Console.WriteLine($"Deque and remove highest priority item from queue. {pq.dequeue()} was removed.");
+            Console.WriteLine();
             pq.printQueue();
             Console.WriteLine();
             pq.printQueueInPriority();
@@ -122,7 +151,7 @@
         // The runtime of this method is O(n)
         public void printQueue()
         {
-            Console.WriteLine("In this queue, the smallest value is the highest priority. \nI.E. 1 is of higher priority than 5, with 5 being the default priority value.\nQueue in FIFO Order: \n");
+            Console.WriteLine("In this queue, the smallest value is the highest priority. \nI.E. 1 is of higher priority than 5, with 5 being the default priority value.\nQueue in FIFO Order:");
             foreach (item item in pQueue) 
             {
                 Console.WriteLine($"{item.data} (priority {item.priority})");
@@ -139,7 +168,7 @@
 
             quickSort(items, 0, items.Length - 1);
 
-            Console.WriteLine("In this queue, the smallest value is the highest priority. \nI.E. 1 is of higher priority than 5, with 5 being the default priority value.\nQueue in Priority Order: \n");
+            Console.WriteLine("In this queue, the smallest value is the highest priority. \nI.E. 1 is of higher priority than 5, with 5 being the default priority value.\nQueue in Priority Order:");
             foreach (item item in items)
             {
                 Console.WriteLine($"{item.data} (priority {item.priority})");
