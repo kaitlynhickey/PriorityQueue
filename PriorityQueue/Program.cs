@@ -174,7 +174,7 @@
             Console.WriteLine("End of Queue");
         }
 
-        // C# Quick Sort Code from Geeks for Geeks
+        // C# Quick Sort Code from Geeks for Geeks altered for item implementation
         // A utility function to swap two elements
         static void swap(item[] arr, int i, int j)
         {
